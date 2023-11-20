@@ -8,11 +8,23 @@
   <title>Document</title>
 </head>
 <body>
+  <h1>Word Counter</h1>
+
   <textarea id="input-field" cols="30" rows="10"></textarea>
 
   <div class="total">
     <label for="word-count">Word Count: </label>
     <span id="word-count">0</span>
+  </div>
+
+  <h2>Word Frequency</h2>
+
+  <div class="sort">
+    <label for="sort">Sort: </label>
+    <select name="sort" id="sort-select">
+      <option value="most-frequent" id="most">Most Frequent</option>
+      <option value="least-frequent" id="least">Least Frequent</option>
+    </select>
   </div>
 
   <div class="tableWrapper">

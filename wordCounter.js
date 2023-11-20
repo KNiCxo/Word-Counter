@@ -1,13 +1,19 @@
-// Elements for textarea, word count, and word table
+// Elements for textarea, word count, sort menu, and word table
 const textArea = document.querySelector('#input-field');
 const wordCount = document.querySelector('#word-count');
-const wordTable = document.querySelector('#word-table')
+const sortMenu = document.querySelector('#sort-select');
+const wordTable = document.querySelector('#word-table');
 
 // Stores list of words from textarea to be displayed (as either most frequent or least frequent)
 let wordArray = [];
 
+// Clear textarea on page open
+textArea.value = '';
+
 // When user inputs into textarea, count total words
 textArea.addEventListener('input', countWords);
+
+sortMenu.addEventListener('click', countWords);
 
 // Counts total words in a string
 function countWords() {
@@ -72,11 +78,19 @@ function tallyWords(result) {
     <th>Total</th>
   </tr>`;
 
-  // Creates an array of the sorted words in the object from most frequent to least frequent
-  const sortedWords = Object.entries(result).sort((a, b) => b[1] - a[1]);
+  // Creates an array of the sorted words in the object as most frequent or least frequent
+  let sortedWords;
+  if (sortMenu.value == 'most-frequent') {
+    sortedWords = Object.entries(result).sort((a, b) => b[1] - a[1]);
+  } else {
+    sortedWords = Object.entries(result).sort((a, b) => a[1] - b[1]);
+  }
 
-  // Loops through all of sorted array, creates a table entry of the word and its frequency count, then appends to table
-  for (let i = 0; i < sortedWords.length; i++) {
+  // If sorted array is less than 10, use length of array. Else, set to 10
+  const stoppingCondition = sortedWords.length < 10 ? sortedWords.length : 10
+
+  //Creates 10 entries of the word and its frequency count and appends them to the table
+  for (let i = 0; i < stoppingCondition; i++) {
       const tableEntry = document.createElement('tr');
 
       tableEntry.innerHTML = `
