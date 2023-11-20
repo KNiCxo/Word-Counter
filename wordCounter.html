@@ -9,8 +9,20 @@
 </head>
 <body>
   <textarea id="input-field" cols="30" rows="10"></textarea>
-  <label for="word-count">Word Count: </label>
-  <span id="word-count">0</span>
+
+  <div class="total">
+    <label for="word-count">Word Count: </label>
+    <span id="word-count">0</span>
+  </div>
+
+  <div class="tableWrapper">
+    <table id="word-table">
+      <tr>
+        <th>Word</th>
+        <th>Total</th>
+      </tr>
+    </table> 
+  </div>
   <script src="wordCounter.js"></script>
 </body>
 </html>
